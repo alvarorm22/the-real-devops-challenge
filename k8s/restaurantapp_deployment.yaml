@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: restaurantapp
+  labels:
+    app: restaurantapp
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: restaurantapp
+  template:
+    metadata:
+      labels:
+        app: restaurantapp
+    spec:
+      containers:
+      - name: restaurantapp
+        image: alvarorm/restaurantapp:latest
+        ports:
+        - containerPort: 8080
+        env:
+        - name: MONGO_URI
+          valueFrom:
+            secretKeyRef:
+              name: restaurantapp-secret 
+              key: MONGO_URI

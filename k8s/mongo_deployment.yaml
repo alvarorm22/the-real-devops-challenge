@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mymongodb
+  labels:
+    app: mymongodb
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mymongodb
+  template:
+    metadata:
+      labels:
+        app: mymongodb
+    spec:
+      containers:
+      - name: mymongodb
+        image: alvarorm/mymongodb:latest
+        ports:
+        - containerPort: 27017 
+
