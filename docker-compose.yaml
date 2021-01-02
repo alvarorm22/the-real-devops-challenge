@@ -1,0 +1,21 @@
+version: '3'
+services:
+  mongo:
+    image: mymongodb
+    container_name: mymongodb
+    build: mongo/.
+    ports:
+      - 27017:27017
+  restaurantapp:
+    image: restaurantapp
+    container_name: restaurantapp
+    build: .
+    depends_on:
+      - mongo
+    links:
+      - mongo
+    ports: 
+      - 8080:8080
+    environment:
+      - MONGO_URI=mongodb://mongo:27017/restaurant
+
