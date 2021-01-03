@@ -12,10 +12,10 @@ before_install:
 install:
   - pip install pytest-pylint==0.16.1
   - pip3 install -r requirements.txt 
-
+  - pip install tox
 script:
   - pytest --pylint --pylint-error-types=EF 
-
+  - tox
 after_success:
   - if [[ "$TRAVIS_BRANCH" == "master" ]]; then
       docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD ;
