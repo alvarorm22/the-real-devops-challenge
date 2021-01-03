@@ -130,6 +130,48 @@ We can test this solution in any Kubernetes cluster with the following commands:
 ```
 
 
+```bash
+curl $RESTAURANTAPP_IP:8080/api/v1/restaurant | jq                                   
+* Closing connection 0
+[
+  {
+    "URL": "http://www.just-eat.co.uk/restaurants-cn-chinese-cardiff/menu",
+    "_id": "55f14312c7447c3da7051b26",
+    "address": "228 City Road",
+    "address line 2": "Cardiff",
+    "name": ".CN Chinese",
+    "outcode": "CF24",
+    "postcode": "3JH",
+    "rating": 5,
+    "type_of_food": "Chinese"
+  },
+  {
+    "URL": "http://www.just-eat.co.uk/restaurants-atthairestaurant/menu",
+    "_id": "55f14312c7447c3da7051b28",
+    "address": "30 Greyhound Road Hammersmith",
+    "address line 2": "London",
+    "name": "@ Thai Restaurant",
+    "outcode": "W6",
+    "postcode": "8NX",
+    "rating": 4.5,
+    "type_of_food": "Thai"
+  },
+  {
+    "URL": "http://www.just-eat.co.uk/restaurants-atthairestaurant/menu",
+    "_id": "55f14312c7447c3da7051b29",
+    "address": "30 Greyhound Road Hammersmith",
+    "address line 2": "London",
+    "name": "@ Thai Restaurant",
+    "outcode": "W6",
+    "postcode": "8NX",
+    "rating": 4.5,
+    "type_of_food": "Thai"
+  }
+
+...
+
+...
+```
 
 
 
@@ -143,3 +185,33 @@ We can test this solution in any Kubernetes cluster with the following commands:
 - https://travis-ci.com/github/alvarorm22/the-real-devops-challenge
 
 
+## KUERNETES ENVIRONMENT:
+
+
+```bash
+k8s|master⚡ ⇒ kubectl get deployments     
+NAME            READY   UP-TO-DATE   AVAILABLE   AGE
+restaurantapp   3/3     3            3           5m47s
+
+k8s|master⚡ ⇒ kubectl get pods
+NAME                            READY   STATUS    RESTARTS   AGE
+restaurantapp-cc49fd7d9-6sk2x   1/1     Running   0          5m51s
+restaurantapp-cc49fd7d9-vcfxv   1/1     Running   0          5m51s
+restaurantapp-cc49fd7d9-s4bcp   1/1     Running   0          5m51s
+mymongodb-0                     1/1     Running   0          101s
+
+kubectl get statefulset                           
+NAME        READY   AGE
+mymongodb   1/1     2m1s
+
+k8s|master⚡ ⇒ kubectl get svc
+NAME            TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)     AGE
+kubernetes      ClusterIP   10.43.0.1      <none>        443/TCP     31d
+restaurantapp   ClusterIP   10.43.58.222   <none>        8080/TCP    5m6s
+mymongodb       ClusterIP   10.43.67.253   <none>        27017/TCP   4m5s
+
+k8s|master⚡ ⇒ kubectl get secrets
+NAME                   TYPE                                  DATA   AGE
+default-token-948r2    kubernetes.io/service-account-token   3      31d
+restaurantapp-secret   Opaque                                1      6m41s
+```
