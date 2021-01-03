@@ -6,6 +6,15 @@
   
 	`query["_id"] = ObjectId(_id)`
 
+        ```python
+	def find_restaurants(mongo, _id=None):
+    		query = {}
+    		if _id:
+        		query["_id"] = ObjectId(_id)
+    		return list(mongo.db.restaurant.find(query))```
+
+
+
   Then, I have changed the `restaurant(id)` method to return a json object if there is a match or a http 204 status code if no match found:
 
 	```python
@@ -79,6 +88,7 @@ We can test this solution in any Kubernetes cluster with the following commands:
 Examples:
 
 `curl $RESTAURANTAPP_IP:8080/api/v1/restaurant/55f14313c7447c3da7052519 | jq`      
+
 ```bash
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                  Dload  Upload   Total   Spent    Left  Speed
@@ -97,6 +107,7 @@ Examples:
 
 
 `curl -v $RESTAURANTAPP_IP:8080/api/v1/restaurant/55f14313c7447c3da7052599`  
+
 ```bash
  Trying 10.43.58.222...
  Connected to 10.43.58.222 (10.43.58.222) port 8080 (#0)
