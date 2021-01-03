@@ -88,6 +88,8 @@ We can test this solution in any Kubernetes cluster with the following commands:
 `curl $RESTAURANTAPP_IP:8080/api/v1/restaurant/55f14313c7447c3da7052519 | jq`
 
 
+If we could want to deploy mongo statefulset with more replicas a shared disk solution should be necessary, for example EFS, glusterfs, ceph, NFS...
+
 ## EXAMPLES
 
 `curl $RESTAURANTAPP_IP:8080/api/v1/restaurant/55f14313c7447c3da7052519 | jq`      
@@ -129,9 +131,9 @@ We can test this solution in any Kubernetes cluster with the following commands:
  Closing connection 0
 ```
 
+`curl $RESTAURANTAPP_IP:8080/api/v1/restaurant | jq`
 
 ```bash
-curl $RESTAURANTAPP_IP:8080/api/v1/restaurant | jq                                   
 * Closing connection 0
 [
   {
@@ -200,7 +202,7 @@ restaurantapp-cc49fd7d9-vcfxv   1/1     Running   0          5m51s
 restaurantapp-cc49fd7d9-s4bcp   1/1     Running   0          5m51s
 mymongodb-0                     1/1     Running   0          101s
 
-kubectl get statefulset                           
+k8s|master⚡ ⇒ kubectl get statefulset                           
 NAME        READY   AGE
 mymongodb   1/1     2m1s
 
