@@ -29,7 +29,7 @@ else:
 ``` 
 
 
-### Tools and scripts
+## Tools and scripts
 
 Some scripts have been developed to build and deploy the images easier:
 
@@ -187,7 +187,7 @@ If we could want to deploy mongo statefulset with more replicas a shared disk so
 - https://travis-ci.com/github/alvarorm22/the-real-devops-challenge
 
 
-## KUERNETES ENVIRONMENT:
+## KUBERNETES ENVIRONMENT:
 
 
 ```bash
