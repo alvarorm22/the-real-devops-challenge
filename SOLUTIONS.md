@@ -7,7 +7,7 @@
 	`query["_id"] = ObjectId(_id)`
 
         ```python
-	def find_restaurants(mongo, _id=None):
+		def find_restaurants(mongo, _id=None):
     		query = {}
     		if _id:
         		query["_id"] = ObjectId(_id)
@@ -87,7 +87,7 @@ We can test this solution in any Kubernetes cluster with the following commands:
 `curl $RESTAURANTAPP_IP:8080/api/v1/restaurant/55f14313c7447c3da7052519 | jq`
 
 
-Examples:
+## EXAMPLES
 
 `curl $RESTAURANTAPP_IP:8080/api/v1/restaurant/55f14313c7447c3da7052519 | jq`      
 
