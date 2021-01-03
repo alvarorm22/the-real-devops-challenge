@@ -1,0 +1,30 @@
+language: python
+
+python:
+  - "3.6"
+
+services:
+  - docker
+
+before_install:
+  - sudo apt-get update
+  - './.travis/main.sh'
+install:
+  - pip install pytest-pylint==0.16.1
+  - pip3 install -r requirements.txt 
+
+script:
+  - pytest --pylint --pylint-error-types=EF 
+
+after_success:
+  - if [[ "$TRAVIS_BRANCH" == "master" ]]; then
+      docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD ;
+      make build && make publish;
+      echo "Deploy to --> PRO environment";
+    fi
+  - if [[ "$TRAVIS_BRANCH" == "staging" ]]; then
+      echo "Deploy to --> staging environment";
+    fi
+  - if [[ "$TRAVIS_BRANCH" == "dev" ]]; then
+      echo "Deploy to --> dev";
+    fi
