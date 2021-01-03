@@ -7,16 +7,16 @@ export $(shell sed 's/=.*//' $(dpl))
 # DOCKER TASKS
 # Build the container
 build: 
-	docker-compose build --no-cache
+	sudo docker-compose build --no-cache
 
 up: 
-	docker-compose up --build
+	sudo docker-compose up --build
 
 stop: 
-	docker-compose stop 
+	sudo docker-compose stop 
 
 start:
-	docker-compose start
+	sudo docker-compose start
  
 
 # Docker publish
