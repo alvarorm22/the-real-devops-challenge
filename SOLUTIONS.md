@@ -8,12 +8,13 @@
 
   Then, I have changed the `restaurant(id)` method to return a json object if there is a match or a http 204 status code if no match found:
 
-	def restaurant(id):
+	```python
+		def restaurant(id):
 		restaurants = find_restaurants(mongo, id)
 		if (len(restaurants)) > 0:
 			return jsonify(restaurants[0])
 		else:
-        		return '', 204 
+        		return '', 204 ``` 
 
 
 ### Tools and scripts
@@ -78,7 +79,8 @@ We can test this solution in any Kubernetes cluster with the following commands:
 Examples:
 
 `curl $RESTAURANTAPP_IP:8080/api/v1/restaurant/55f14313c7447c3da7052519 | jq`      
-`  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+```bash
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                  Dload  Upload   Total   Spent    Left  Speed
 100   263  100   263    0     0   118k      0 --:--:-- --:--:-- --:--:--  128k
 {
@@ -91,24 +93,25 @@ Examples:
   "postcode": "9NG",
   "rating": 5.5,
   "type_of_food": "Fish & Chips"
-}`
+}```
 
 
 `curl -v $RESTAURANTAPP_IP:8080/api/v1/restaurant/55f14313c7447c3da7052599`  
-`   Trying 10.43.58.222...
+```bash
+ Trying 10.43.58.222...
  Connected to 10.43.58.222 (10.43.58.222) port 8080 (#0)
  GET /api/v1/restaurant/55f14313c7447c3da7052599 HTTP/1.1
  Host: 10.43.58.222:8080
  User-Agent: curl/7.47.0
- Accept:`
+ Accept:
 
-` HTTP 1.0, assume close after body
+ HTTP 1.0, assume close after body
  HTTP/1.0 204 NO CONTENT
  Content-Type: text/html; charset=utf-8
  Server: Werkzeug/1.0.1 Python/3.6.12
  Date: Sun, 03 Jan 2021 18:57:27 GMT
 
- Closing connection 0`
+ Closing connection 0```
 
 
 
