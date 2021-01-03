@@ -11,7 +11,8 @@
     		query = {}
     		if _id:
         		query["_id"] = ObjectId(_id)
-    		return list(mongo.db.restaurant.find(query))```
+    		return list(mongo.db.restaurant.find(query))
+	```
 
 
 
@@ -23,7 +24,8 @@
 		if (len(restaurants)) > 0:
 			return jsonify(restaurants[0])
 		else:
-        		return '', 204 ``` 
+        		return '', 204 
+	``` 
 
 
 ### Tools and scripts
@@ -103,7 +105,8 @@ Examples:
   "postcode": "9NG",
   "rating": 5.5,
   "type_of_food": "Fish & Chips"
-}```
+}
+```
 
 
 `curl -v $RESTAURANTAPP_IP:8080/api/v1/restaurant/55f14313c7447c3da7052599`  
@@ -122,7 +125,8 @@ Examples:
  Server: Werkzeug/1.0.1 Python/3.6.12
  Date: Sun, 03 Jan 2021 18:57:27 GMT
 
- Closing connection 0```
+ Closing connection 0
+```
 
 
 
