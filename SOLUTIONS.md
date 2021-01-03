@@ -6,26 +6,27 @@
   
 	`query["_id"] = ObjectId(_id)`
 
-        ```python
-		def find_restaurants(mongo, _id=None):
-    		query = {}
-    		if _id:
-        		query["_id"] = ObjectId(_id)
-    		return list(mongo.db.restaurant.find(query))
-	```
+```python
+def find_restaurants(mongo, _id=None):
+query = {}
+    if _id:
+       	query["_id"] = ObjectId(_id)
+return list(mongo.db.restaurant.find(query))
+```
 
 
 
   Then, I have changed the `restaurant(id)` method to return a json object if there is a match or a http 204 status code if no match found:
 
-	```python
-		def restaurant(id):
-		restaurants = find_restaurants(mongo, id)
-		if (len(restaurants)) > 0:
-			return jsonify(restaurants[0])
-		else:
-        		return '', 204 
-	``` 
+
+```python
+def restaurant(id):
+restaurants = find_restaurants(mongo, id)
+if (len(restaurants)) > 0:
+    return jsonify(restaurants[0])
+else:
+    return '', 204 
+``` 
 
 
 ### Tools and scripts
